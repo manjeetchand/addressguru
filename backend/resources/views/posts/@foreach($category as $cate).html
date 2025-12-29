@@ -1,0 +1,126 @@
+ @foreach($category as $cate)
+                            <div class="col-md-2 col-4 main-box" style="padding:0px;">
+                                <a href="javascript:void(0);" class="category-link" data-category="{{ $cate->name }}">
+                                    <div class="p_box"> 
+                                        <span style="font-size:50px;color:{{$cate->colors}};"><i class="{{$cate->icon}}"></i></span>
+                                        <br/>
+                                        <p>{{$cate->name}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
+
+                        <!-- JavaScript to handle city selection and popup -->
+                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                        <script>
+                            document.querySelectorAll('.category-link').forEach(function(link) {
+                                link.addEventListener('click', function(e) {
+                                    var selectedCity = document.getElementById('cityDropdown').value;
+                                    if (selectedCity === "") {
+                                        e.preventDefault();
+                                        swal("Please select a city before proceeding.");
+                                    } else {
+                                        var categoryName = link.getAttribute('data-category').toLowerCase();
+                                        var updatedUrl = "{{ url('') }}/" + categoryName + "/" + encodeURIComponent(selectedCity.toLowerCase());
+                                        window.location.href = updatedUrl;
+                                    }
+                                });
+                            });
+
+                        </script>
+
+
+
+
+		
+<style type="text/css">
+    .filter-stop{display:none;}
+</style>
+</div>
+<div class="col-md-3 search-padding hidden-xs">
+    <div class="filter-stop">
+        <div class="filter-search-top">
+            Search Filters <i class="fa fa-filter"></i>
+        </div>
+        <div class="panel-group" style="margin-top:8px;">
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-trophy fa-fw"></i> Top Results</div>
+                <div class="panel-body">
+                    {!! Form::open(['action'=>'Search@store']) !!}
+                        <ul class="topul">
+                            <li><input type="radio" name="top" value="5" onclick="this.form.submit()"><span data-toggle="tooltip" data-placement="top" title="Top 5 {{$category->name}} in {{$city}}"> Top 5 {{$category->name}} in {{$city}}</span></li>
+                            <li><input type="radio" name="top" value="10" onclick="this.form.submit()"><span data-toggle="tooltip" data-placement="top" title="Top 10 {{$category->name}} in {{$city}}"> Top 10 {{$category->name}} in {{$city}}</span></li>
+                            <li><input type="radio" name="top" value="15" onclick="this.form.submit()"><span data-toggle="tooltip" data-placement="top" title="Top 15 {{$category->name}} in {{$city}}"> Top 15 {{$category->name}} in {{$city}}</span></li>
+                            <li><input type="radio" name="top" value="20" onclick="this.form.submit()"><span data-toggle="tooltip" data-placement="top" title="Top 20 {{$category->name}} in {{$city}}"> Top 20 {{$category->name}} in {{$city}}</span></li>
+                        </ul>
+                        <input type="hidden" name="category" value="{{$category_id}}">
+                        <input type="hidden" name="city" value="{{$city}}">
+                    {!! Form::close() !!}
+                </div>
+            </div>
+            @if(count($sub) != 0)
+                <div class="panel panel-success">
+                    <div class="panel-heading"><i class="fa fa-tags fa-fw"></i> Sub-Category</div>
+                    <div class="panel-body" style="overflow:auto;max-height:200px;">
+                        {!! Form::open(['action'=>'Search@store']) !!}
+                            @foreach($sub as $subs)
+                                <input type="radio" name="subcategory" value="{{$subs->id}}" onclick="this.form.submit()" required="required"> <span data-toggle="tooltip" data-placement="top" style="font-size:13px;" title="{{$subs->name}}"> {{$subs->name}}</span><br/>
+                            @endforeach
+                            <input type="hidden" name="category" value="{{$category_id}}">
+                            <input type="hidden" name="city" value="{{$city}}">
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            @endif
+            <div class="panel panel-success">
+                <div class="panel-heading"><i class="fa fa-map-marker fa-fw"></i> Locality</div>
+                <div class="panel-body" style="overflow:auto;max-height:200px;">
+                    {!! Form::open(['action'=>'Search@store']) !!}
+                        @foreach($contacts as $per)
+                            @if($per->location != "")
+                            <input type="radio" name="local" value="{{$per->location}}" onclick="this.form.submit()" required="required"> <span data-toggle="tooltip" data-placement="top" style="font-size:13px;" title="{{$per->location}}"> {{substr($per->location, 0, 30)}}...</span><br/>
+                            @endif
+                        @endforeach
+                        <input type="hidden" name="category" value="{{$category_id}}">
+                        <input type="hidden" name="city" value="{{$city}}">
+                    {!! Form::close() !!}
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading"><i class="fa fa-building-o fa-fw"></i> Other Cities</div>
+                <div class="panel-body">
+                    {!! Form::open(['action'=>'Search@store']) !!}
+                        @foreach($unique as $news)
+                            <input type="radio" name="city" value="{{$news}}" onclick="this.form.submit()" required="required"> <span data-toggle="tooltip" data-placement="top" title="{{$news}}" style="font-size:13px;"> {{substr($news, 0, 21)}}</span><br/>
+                        @endforeach
+                        <input type="hidden" name="path" value="{{$category_id}}">
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+        </div><br/>
+        <div class="thumbnail">
+            <img src="{{url('/')}}/images/newbanner.jpeg" class="img-responsive" alt="AddressGuru">
+        </div>
+    </div>
+    <!-- <div class="col-md-2 hidden-xs hidden-sm search-padding">
+        <div class="thumbnail" style="margin-top:20px;">
+            <a href="http://www.dsom.in/" target="_blank" rel="nofollow"><img src="/images/dsom.jpg" class="img-responsive" alt="Dehradun School of Online Marketing"></a>
+        </div>
+    </div> -->
+    @if(isset($top) ? $top == 5 : '' OR isset($top) ? $top == 10 : '')
+        <div class="col-md-12 listing-down">
+            <div style="background-color:#fff;padding:15px;margin-bottom:15px;box-shadow:0px 0px 4px #ccc;">
+                <strong style="font-size:15px;">Here's the list of top {{count($data)}} {{$category->name}} in {{$city}}</strong><br/><br/>
+                <?php $co = 1; ?>
+                @foreach($data as $key => $value)
+                    @if(isset($value[0]))
+                        <strong>{{$co}}. {{$value[0]->business_name}}</strong>
+                        <p>{{substr($value[0]->ad_description, 0, 300)}}... <a href="{{url('/', $value[0]->slug)}}">Read More</a></p>
+                    @endif
+                    <?php $co++; ?>
+                @endforeach
+            </div>
+        </div>
+    @endif
+</div>
