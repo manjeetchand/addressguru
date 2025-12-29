@@ -1,0 +1,27 @@
+# =============================
+# Backend (Laravel)
+# =============================
+/backend/vendor/
+/backend/.env
+/backend/storage/
+/backend/bootstrap/cache/
+
+# =============================
+# Frontend (React)
+# =============================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
+
+# =============================
+# Common
+# =============================
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# =============================
+# OS
+# =============================
+.DS_Store
+Thumbs.db
