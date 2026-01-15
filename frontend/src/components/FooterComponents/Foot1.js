@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const menuLinks = [
   { name: "About Us", path: "/about-us" },
-  { name: "Contact Us", path: "/contact" },
+  { name: "Blogs", path: "/blogs" },
   { name: "Become A Partner", path: "/partner" },
   { name: "Posting Rules", path: "/posting-rules" },
   { name: "Marketplace", path: "/listing/marketplace" },

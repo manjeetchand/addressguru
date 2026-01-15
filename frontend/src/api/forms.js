@@ -145,3 +145,17 @@ export const add_properties_listing = async (payload) => {
 //     console.log("error step from", error);
 //   }
 // };
+
+export const get_company_data = async () => {
+  const token = localStorage.getItem("authToken");
+  try {
+    const res = await axios.get(`${API_URL}/previous-company`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res?.data;
+  } catch (error) {
+    console.log("error of company data in api", error);
+  }
+};

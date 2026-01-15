@@ -1,4 +1,4 @@
-import { add_job_listing } from "@/api/forms";
+import { add_job_listing, get_company_data } from "@/api/forms";
 import CheckBox from "@/components/Forms/CheckBox";
 import InputWithTitle from "@/components/Forms/InputWithTitle";
 import Navbar from "@/components/Forms/Navbar";
@@ -31,6 +31,36 @@ const JobListing = () => {
   const router = useRouter();
   const { jobId } = router.query;
   const { edit } = router.query;
+
+  const getCompanyData = async () => {
+    try {
+      const res = await get_company_data();
+      if (!res) return;
+
+      if (res?.success) {
+        setPostJobData((prev) => ({
+          ...prev,
+          companyLogo: res.company?.logo || null,
+          companyName: res.company?.name || "",
+          companyDescription: res.company?.description || "",
+          companyWebsite: res.company?.website || "",
+          name: res.company?.contact_person || "",
+          email: res.company?.email || "",
+          phone: res.company?.phone || "",
+          city: res.company?.city || "",
+          address: res.company?.address || "",
+          zipCode: res.company?.zip_code || "",
+        }));
+      }
+      console.log("response of company", res);
+    } catch (error) {
+      console.log("error of company", error);
+    }
+  };
+
+  useEffect(() => {
+    getCompanyData();
+  }, []);
 
   // Refs for error scrolling
   const categoryRef = useRef(null);
@@ -119,8 +149,6 @@ const JobListing = () => {
         const categoriesData = await get_job_categories();
         const jobTypesData = await get_job_type();
         const educationData = await get_job_edulvl();
-        // console.log("type of job", jobTypesData);
-        // console.log("edu level", educationData);
         setCategories(categoriesData?.data?.categories);
         setJobTypes(jobTypesData?.data?.types);
         setEducationLevels(educationData?.data?.education_level);

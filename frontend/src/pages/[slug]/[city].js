@@ -9,8 +9,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { APP_URL } from "@/services/constants";
-import Listings from "@/components/HeadersMobile/Listings"
+import Listings from "@/components/HeadersMobile/Listings";
 import FilterBar from "@/components/BusinessListingComponents/FilterBar";
+import { get_listing_filters } from "@/api/listingfilters";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -23,9 +24,48 @@ const SearchResults = () => {
   const [filters, setFilters] = useState({
     sort_by: null, // newest | oldest | popular
     ag_verified: false, // true | false
+    facilities_id: [],
+    services_id: [],
+    payment_mode_id: [],
+  });
+  const [dynamicFilters, setDynamicFilters] = useState({
+    facilitis: null,
+    service: null,
+    paymentMode: null,
   });
 
   const { slug } = router.query; // KEEP slug and id from URL but NOT city
+
+  const handleReset = () => {
+    setFilters({
+      sort_by: null,
+      ag_verified: false,
+      facilities_id: [],
+      services_id: [],
+      payment_mode_id: [],
+    });
+  };
+
+  // -------------------------
+  //   GET FILTERS
+  // -------------------------
+
+  const getFilters = async (slug) => {
+    try {
+      const response = await get_listing_filters(slug);
+      setDynamicFilters({ ...dynamicFilters, ...response });
+      return response;
+    } catch (error) {
+      console.log("getFilters", error);
+      return error;
+    }
+  };
+
+  useEffect(() => {
+    if (!router.isReady || !slug) return;
+
+    getFilters(slug);
+  }, [slug]);
 
   // -------------------------
   //   REDIRECT WHEN CITY CHANGES
@@ -60,10 +100,10 @@ const SearchResults = () => {
 
         const res = await get_listing_by_slug(slug, globalCity, 1, filters);
 
-        if (!res || res.status === false) {
-          router.push("/404");
-          return;
-        }
+        // if (!res || res.status != true) {
+        //   router.push("/404");
+        //   return;
+        // }
 
         setListings(res.result || []);
         setPageData(res);
@@ -205,12 +245,12 @@ const SearchResults = () => {
         />
       </Head>
 
-   <Listings />
+      <Listings />
 
       <div className="h-auto flex flex-col max-md:mt-1.5 items-center overflow-hidden justify-center bg-[#F8F7F7]">
         <div className="flex flex-col min-md:w-[80%] max-md:min-w-full bg-white md:px-3 mx-auto  md:pb-20 pr-2">
           {/* Always visible */}
-        {/* <div className="mt-4 max-md:ml-2.5 md:mb-4">
+          {/* <div className="mt-4 max-md:ml-2.5 md:mb-4">
             <BreadCrumbs
             slug={slug}
             city={globalCity}
@@ -222,9 +262,10 @@ const SearchResults = () => {
           <h1 className="font-bold text-xl mt-2 capitalize max-md:hidden mb-3">
             Top {slug} in {globalCity}
           </h1>
-       
 
           <FilterBar
+            handleReset={handleReset}
+            dynamicFilters={dynamicFilters}
             filters={filters}
             onFilterChange={(updatedFilters) => {
               setFilters((prev) => ({
@@ -233,7 +274,6 @@ const SearchResults = () => {
               }));
             }}
           />
-        
 
           <div className="flex w-full gap-4">
             {/* LEFT SIDE LISTINGS */}

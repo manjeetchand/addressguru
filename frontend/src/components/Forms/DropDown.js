@@ -42,7 +42,7 @@ const DropDown = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+        <div className="absolute z-10 mt-1 w-full bg-white border max-h-60 overflow-y-scroll border-gray-200 rounded-lg shadow-lg overflow-hidden">
           {options.length > 0 ? (
             options.map((option) => (
               <button

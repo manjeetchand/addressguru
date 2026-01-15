@@ -26,7 +26,7 @@ export const get_user_details = async () => {
       },
     });
 
-    console.log("res of user", res?.data);
+    // console.log("res of user", res?.data);
     return res.data; // ✅ FIXED
   } catch (error) {
     console.log("error of getting user", error);

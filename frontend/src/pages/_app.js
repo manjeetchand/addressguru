@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
 
   /* ------------------ ROUTE FLAGS ------------------ */
   const isDashboard = router.pathname.startsWith("/dashboard");
-  const isSeeDetails = router.pathname.startsWith("/see-details");
+  const isSeeDetails = router.pathname.startsWith("/[slug]");
   const isCity = !!router.query.city && !!router.query.slug;
 
   const shouldShowHeader =

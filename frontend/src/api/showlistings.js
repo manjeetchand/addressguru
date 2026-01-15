@@ -2,21 +2,18 @@ import axios from "axios";
 import { API_URL } from "@/services/constants";
 
 // get multiple listings based on category and city with pagination
-export const get_listing_by_slug = async (SLUG, city, page = 1,filter) => {
+export const get_listing_by_slug = async (SLUG, city, page = 1, filter) => {
   try {
-    const response = await axios.get(
-      `${API_URL}/listing/${SLUG}/${city}`,
-      {
-        params: {
-          page,
-          sort_by: filter?.sort_by || null,
-          ag_verified: filter?.ag_verified || null // 👈 pass page to backend
-        },
-      }
-    );
-
-    // console.log("response",response)
-
+    const response = await axios.get(`${API_URL}/listing/${SLUG}/${city}`, {
+      params: {
+        page,
+        sort_by: filter?.sort_by || null,
+        ag_verified: filter?.ag_verified || null,
+        facility: filter?.facilities_id || null,
+        service: filter?.service_id || null,
+        payment_mode: filter?.payment_mode_id || null,
+      },
+    });
     return response?.data;
   } catch (error) {
     console.log(error);

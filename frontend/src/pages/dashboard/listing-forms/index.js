@@ -22,6 +22,7 @@ import {
   clearSession,
 } from "@/utils/sessionStorage";
 import { get_listing_data } from "@/api/showlistings";
+import { BUSINESS_POSTING_TIPS } from "@/services/constants";
 
 const ListingForms = () => {
   const router = useRouter();
@@ -789,6 +790,9 @@ const ListingForms = () => {
 
   const currentStep = steps.find((step) => step.active)?.step || 1;
   const isEditMode = !!name;
+  const currentPostingStep = BUSINESS_POSTING_TIPS.find(
+    (item) => item.step === currentStep
+  );
 
   const renderStepContent = () => {
     switch (currentStep) {
@@ -932,8 +936,15 @@ const ListingForms = () => {
             </section>
 
             <div className="md:w-[420px] mx-2 h-fit shadow-md mt-7 bg-[#FFF8F3] p-3 rounded-xl text-sm">
-              <div className="w-full ">
+              <div className="w-full">
                 <h6 className="font-extrabold text-base my-2">Posting Tips</h6>
+
+                {currentPostingStep?.fields?.map((field, index) => (
+                  <div key={index} className="mb-0.5">
+                    <p className="font-semibold text-xs">{field.title}</p>
+                    <p className="text-gray-700 text-[10px] font-medium leading-snug">{field.tip}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

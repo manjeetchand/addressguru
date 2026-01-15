@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.addressguru.sg",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
   async rewrites() {
