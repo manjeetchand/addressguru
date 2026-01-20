@@ -257,8 +257,8 @@ const GetMoreInfo = ({ setEnquirePop, name, type, id }) => {
 
       <div className="absolute min-w-full -bottom-14 2xl:-bottom-16 rounded-xl">
         <Image
-          src="/assets/seeDetails/get-more-info-bottom.png"
-          href="Border"
+          src="/assets/getBottom.png"
+          alt="border"
           height={500}
           width={500}
           className="w-full h-30"

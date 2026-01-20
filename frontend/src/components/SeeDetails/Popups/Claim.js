@@ -121,7 +121,7 @@ export const Claim = ({ onClose, type, id, setThanksPop, setType }) => {
     formData.captchaVerified;
 
   return (
-    <div className="relative max-w-md w-full bg-white rounded-2xl shadow-xl p-4">
+    <div className="relative max-w-120  w-full  bg-white rounded-2xl shadow-xl p-6">
       <button
         onClick={onClose}
         className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 transition"

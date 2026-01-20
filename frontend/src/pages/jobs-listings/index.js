@@ -84,9 +84,8 @@ const JobsListings = ({ allJobs }) => {
 
       <div className="flex flex-col items-center w-full h-full justify-center bg-[#F8F7F7] ">
         <div className="md:w-[80%] w-full rounded-lg pb-10 bg-white md:pl-3 max-md:px-2">
-          <div className="max-md:hidden">
-
-          <BreadCrumbs slug={"jobs"} name={"jobs"} length={allJobs?.length} />
+          <div className="max-md:hidden mt-3">
+            <BreadCrumbs slug={"jobs"} name={"jobs"} length={allJobs?.length} />
           </div>
           <h1 className="capitalize font-semibold max-md:hidden text-2xl">
             top jobs in {city}
@@ -120,7 +119,7 @@ const JobsListings = ({ allJobs }) => {
                   </button>
                 </div>
                 <Image
-                  src="/assets/job/jobsad1.png"
+                  src="/assets/jobsad1.png"
                   alt="looking for jobs"
                   height={500}
                   width={500}
@@ -138,7 +137,7 @@ const JobsListings = ({ allJobs }) => {
                   </button>
                 </div>
                 <Image
-                  src="/assets/job/jobsad2.png"
+                  src="/assets/jobsad2.png"
                   alt="looking for jobs"
                   height={500}
                   width={500}

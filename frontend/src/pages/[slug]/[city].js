@@ -12,6 +12,9 @@ import { APP_URL } from "@/services/constants";
 import Listings from "@/components/HeadersMobile/Listings";
 import FilterBar from "@/components/BusinessListingComponents/FilterBar";
 import { get_listing_filters } from "@/api/listingfilters";
+import Header from "@/layout/header";
+import Footer from "@/layout/footer";
+import MobileFooter from "@/components/MobileFooter";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -35,6 +38,13 @@ const SearchResults = () => {
   });
 
   const { slug } = router.query; // KEEP slug and id from URL but NOT city
+
+  const hasActiveFilters =
+    filters.sort_by !== null ||
+    filters.ag_verified !== false ||
+    filters.facilities_id.length > 0 ||
+    filters.services_id.length > 0 ||
+    filters.payment_mode_id.length > 0;
 
   const handleReset = () => {
     setFilters({
@@ -128,7 +138,7 @@ const SearchResults = () => {
         slug,
         globalCity,
         pageData.next_page,
-        filters // 🔥 PASS FILTERS
+        filters, // 🔥 PASS FILTERS
       );
 
       if (res?.result?.length) {
@@ -163,6 +173,9 @@ const SearchResults = () => {
 
   return (
     <>
+      <section className="md:hidden">
+        <Header />
+      </section>
       <Head>
         {/* ===== META BASIC ===== */}
         <title>{`Top ${slug} in ${globalCity} | Best ${slug} Listings`}</title>
@@ -245,25 +258,26 @@ const SearchResults = () => {
         />
       </Head>
 
-      <Listings />
+      {/* <Listings /> */}
 
       <div className="h-auto flex flex-col max-md:mt-1.5 items-center overflow-hidden justify-center bg-[#F8F7F7]">
         <div className="flex flex-col min-md:w-[80%] max-md:min-w-full bg-white md:px-3 mx-auto  md:pb-20 pr-2">
           {/* Always visible */}
-          {/* <div className="mt-4 max-md:ml-2.5 md:mb-4">
+          <div className="mt-6 max-md:ml-2.5 md:mb-2">
             <BreadCrumbs
-            slug={slug}
-            city={globalCity}
-            length={pageData?.total}
-            name={"business listings"}
-          />
-        </div> */}
+              slug={slug}
+              city={globalCity}
+              length={pageData?.total}
+              name={"business listings"}
+            />
+          </div>
 
           <h1 className="font-bold text-xl mt-2 capitalize max-md:hidden mb-3">
             Top {slug} in {globalCity}
           </h1>
 
           <FilterBar
+            hasActiveFilters={hasActiveFilters}
             handleReset={handleReset}
             dynamicFilters={dynamicFilters}
             filters={filters}
@@ -277,7 +291,7 @@ const SearchResults = () => {
 
           <div className="flex w-full gap-4">
             {/* LEFT SIDE LISTINGS */}
-            <div className="flex flex-col my-2 md:my-4 gap-2 w-full">
+            <div className="flex flex-col my-2 md:my-4 gap-2 w-full max-md:mb-32">
               <div className="bg-white w-full  rounded-lg pl-2 ">
                 {/* SKELETON ONLY INSIDE LIST AREA */}
                 {isLoading ? (
@@ -341,7 +355,7 @@ const SearchResults = () => {
                 <button
                   onClick={handleLoadMore}
                   disabled={isLoadingMore}
-                  className=" text-orange-500 capitalize px-1.5 py-1 max-w-25 md:mx-auto rounded-md text-sm font-medium disabled:opacity-50"
+                  className=" text-orange-500 max-md:ml-3 capitalize border border-orange-500 px-1.5 py-1 max-w-25 md:mx-auto rounded-md text-sm font-medium disabled:opacity-50"
                 >
                   {isLoadingMore ? "Loading..." : "Load more"}
                 </button>
@@ -355,6 +369,7 @@ const SearchResults = () => {
           </div>
         </div>
       </div>
+      <MobileFooter />
     </>
   );
 };

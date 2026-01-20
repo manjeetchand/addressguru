@@ -41,7 +41,8 @@ const SocialDetails = ({ social, setSocial, error, clearError, refs }) => {
         {/* Video Link - wrapped with ref */}
         <div ref={refs?.videoLinkRef}>
           <InputWithTitle
-            title={"Video Link"}
+            header={"facebook, youtube, instagram, tiktok"}
+            title={"Social Link"}
             isTextarea={false}
             placeholder={"https://youtube.com/watch?v=..."}
             error={error?.videoLink}

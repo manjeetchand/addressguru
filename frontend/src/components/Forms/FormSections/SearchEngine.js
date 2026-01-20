@@ -58,12 +58,13 @@ const SearchEngine = ({ seo, setSeo, business, error, clearError, refs }) => {
   }, [business?.name, seo.title, setSeo]);
 
   // Generic handler for updating SEO state
-  const handleChange = (field, value, errorKey) => {  // ADD errorKey parameter
+  const handleChange = (field, value, errorKey) => {
+    // ADD errorKey parameter
     setSeo((prev) => ({
       ...prev,
       [field]: value,
     }));
-    
+
     // Clear error when user starts typing
     if (clearError && errorKey) {
       clearError(errorKey);
@@ -147,7 +148,7 @@ Provide ONLY the meta description text, nothing else.`;
               ? cleanText.substring(0, 157) + "..."
               : cleanText;
 
-          handleChange("description", finalText, "seoDescription");  // ADD errorKey
+          handleChange("description", finalText, "seoDescription"); // ADD errorKey
           console.log(
             "✨ Meta description generated successfully with",
             modelName
@@ -178,6 +179,7 @@ Provide ONLY the meta description text, nothing else.`;
       {/* Meta Title - wrapped with ref */}
       <div ref={refs?.seoTitleRef}>
         <InputWithTitle
+          required={true}
           error={error?.seoTitle}
           title="Meta Title"
           isTextarea={false}
@@ -197,7 +199,9 @@ Provide ONLY the meta description text, nothing else.`;
               <span className="text-red-600 ml-1">&#42;</span>
             </h3>
             {error?.seoDescription && (
-              <p className="text-red-500 text-sm ml-2">{error?.seoDescription}</p>
+              <p className="text-red-500 text-sm ml-2">
+                {error?.seoDescription}
+              </p>
             )}
           </span>
 
@@ -263,7 +267,9 @@ Provide ONLY the meta description text, nothing else.`;
             rows={4}
             placeholder="Enter meta description or generate using AI (150-160 characters)"
             value={seo.description || ""}
-            onChange={(e) => handleChange("description", e.target.value, "seoDescription")}
+            onChange={(e) =>
+              handleChange("description", e.target.value, "seoDescription")
+            }
             //                                                             ^^^^^^^^^^^^^^^^ ADD errorKey
             maxLength={160}
           />
