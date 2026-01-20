@@ -121,7 +121,7 @@ const Report = ({ onClose, id, type, setType, setThanksPop }) => {
     formData.captchaVerified;
 
   return (
-    <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-4 relative">
+    <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 relative">
       <button
         onClick={handleClose}
         className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"

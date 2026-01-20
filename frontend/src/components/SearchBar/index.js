@@ -14,7 +14,7 @@ const SearchBar = ({ data, isOpen, setIsOpen, value, setValue, onSearch }) => {
   const showTypewriter = !isFocused && !value;
 
   return (
-    <div className="w-[530px] h-[50px] rounded-full relative bg-white flex items-center px-5 shadow-md">
+    <div className="w-[530px] h-[50px] rounded-r-full rounded-l-xs relative bg-white flex items-center px-5 shadow-md">
       {/* City Dropdown */}
       <CityDropdown isOpen={isOpen} setIsOpen={setIsOpen} data={data} />
 

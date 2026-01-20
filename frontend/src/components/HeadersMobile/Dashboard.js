@@ -48,7 +48,7 @@ const Header = () => {
 
       {/* CENTER LOGO */}
       <Image
-        src="/assets/logopng 1.png"
+        src="/assets/addressguru_logo.png"
         alt="logo"
         width={120}
         height={40}

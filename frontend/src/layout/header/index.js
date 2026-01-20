@@ -27,7 +27,6 @@ const Header = () => {
   const [showCitiesPop, setShowCitiesPop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [slug, setSlug] = useState("");
-
   const { city } = useAuth();
   const router = useRouter();
 
@@ -191,7 +190,7 @@ const Header = () => {
         )}
 
         {/* Left Section */}
-        <div className="flex items-center gap-15">
+        <div className="flex items-center gap-6">
           {open ? (
             <svg
               onClick={handleCloseSidebar}
@@ -220,7 +219,7 @@ const Header = () => {
           )}
           <Link href="/">
             <Image
-              src="/assets/logopng 1.png"
+              src="/assets/addressguru_logo.png"
               alt="nav logo"
               height={500}
               width={500}
@@ -231,7 +230,7 @@ const Header = () => {
 
         <Link href="/">
           <Image
-            src="/assets/logopng 1.png"
+            src="/assets/addressguru_logo.png"
             alt="nav logo"
             height={500}
             width={500}
@@ -266,7 +265,7 @@ const Header = () => {
         </div>
 
         {showSearchBar && (
-          <div className="absolute left-[220px] max-xl:mr-5 2xl:left-[240px] top-[9px] max-md:hidden min-[1600px]:scale-75 z-50 border-2 border-gray-200 rounded-full scale-70">
+          <div className="absolute left-[220px] max-xl:mr-5 2xl:left-[240px] top-[9px] max-md:hidden min-[1600px]:scale-75 z-50 border-2 border-gray-200 rounded-r-full scale-70">
             <SearchBar
               value={slug}
               setValue={setSlug}

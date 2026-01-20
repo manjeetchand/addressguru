@@ -31,7 +31,7 @@ const FilterItem = ({
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isOpen]);
+  }, [isOpen, setOpenIndex]);
 
   const handleClick = () => {
     if (hasDropdown || isRadio || isMultiple) {
@@ -54,13 +54,13 @@ const FilterItem = ({
   const handleApply = () => {
     if (isRadio && tempSelectedId !== null) {
       const selectedOption = radioOptions.find(
-        (opt) => opt.id === tempSelectedId
+        (opt) => opt.id === tempSelectedId,
       );
       onSelect?.(selectedOption);
       setOpenIndex(null);
     } else if (isMultiple) {
       const selectedOptions = multiOptions.filter((opt) =>
-        tempSelectedMultiIds.includes(opt.id)
+        tempSelectedMultiIds.includes(opt.id),
       );
       onSelect?.(selectedOptions);
       setOpenIndex(null);
@@ -71,7 +71,7 @@ const FilterItem = ({
     setTempSelectedMultiIds((prev) =>
       prev.includes(optionId)
         ? prev.filter((id) => id !== optionId)
-        : [...prev, optionId]
+        : [...prev, optionId],
     );
   };
 
@@ -79,11 +79,11 @@ const FilterItem = ({
     <div className="relative">
       <div
         onClick={handleClick}
-        className={`flex items-center whitespace-nowrap gap-1 px-2 py-1.5 cursor-pointer rounded text-xs font-semibold transition-colors
+        className={`flex items-center whitespace-nowrap gap-1 px-2 py-1.5 cursor-pointer rounded text-sm font-semibold transition-colors
           ${
             active
               ? "bg-orange-100 text-orange-600"
-              : "bg-white hover:bg-gray-50"
+              : "bg-white border-gray-300 border hover:bg-gray-50"
           }
         `}
       >
@@ -114,7 +114,7 @@ const FilterItem = ({
         !isMultiple &&
         isOpen &&
         dropdownItems.length > 0 && (
-          <div className="absolute top-full left-0 z-50 mt-2 w-40 bg-white shadow-lg rounded border border-gray-100 text-xs">
+          <div className="absolute top-full left-0 z-50 mt-2 w-40 bg-white shadow-lg rounded border border-gray-100 text-sm">
             {dropdownItems.map((item, idx) => (
               <div
                 key={idx}
@@ -194,7 +194,7 @@ const FilterItem = ({
 
       {/* Checkbox Dropdown (Multiple Select) */}
       {isMultiple && isOpen && multiOptions.length > 0 && (
-        <div className="absolute top-full left-0 z-50 mt-3 w-56 bg-white shadow-lg rounded  text-xs">
+        <div className="absolute top-full left-0 z-50 mt-3 w-76 bg-white shadow-lg rounded  text-sm">
           <div className="p-2 space-y-1 max-h-64 overflow-y-auto">
             {multiOptions.map((option) => (
               <label
@@ -236,7 +236,7 @@ const FilterItem = ({
                     )}
                   </div>
                 </div>
-                <span className="font-semibold text-gray-600 select-none">
+                <span className="font-semibold text-gray-950 text-sm select-none">
                   {option.label}
                 </span>
               </label>

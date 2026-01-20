@@ -10,7 +10,7 @@ const BreadCrumbs = ({ slug, name, length, type }) => {
   };
   return (
     <div className="">
-      <span className="text-xs flex items-center max-md:text-[11x] font-medium gap-[4px] ">
+      <span className="text-sm flex items-center max-md:text-[11x] font-medium gap-[4px] ">
         {/* City */}
         <span>{city}</span>
 
@@ -20,21 +20,20 @@ const BreadCrumbs = ({ slug, name, length, type }) => {
             className={`cursor-pointer font-semibold ${type && "text-orange-500"} `}
             onClick={handleSlugClick}
           >
-            {">"} {slug}
+            {" / "} {slug}
           </span>
         )}
 
         {/* TYPE will come BEFORE name if exists */}
         {type && (
           <span className="font-medium ">
-            {">"} {type}
+            {" / "} {type}
           </span>
         )}
 
         {/* Name */}
         {name && (
           <strong className="flex gap-[2px]">
-            {/* {">"} */}
             {length && (
               <span>
                 {length}

@@ -295,7 +295,7 @@ const ListingForms = () => {
       try {
         const res = await get_listing_data(name);
         setExistingData(res);
-        console.log("response of single listing i am", res);
+        // console.log("response of single listing i am", res);
       } catch (err) {
         console.error("Error fetching listing:", err);
       }

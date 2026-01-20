@@ -69,7 +69,6 @@ export default function App({ Component, pageProps }) {
                 </div>
               </div>
             )}
-
             {/* ---------------- LOADER ---------------- */}
             {loading && <Loader />}
 
@@ -84,9 +83,9 @@ export default function App({ Component, pageProps }) {
             {shouldShowFooter && (
               <>
                 <MobileFooter />
-                <Footer />
               </>
             )}
+            <Footer />
           </div>
         </div>
       </AuthProvider>

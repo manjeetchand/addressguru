@@ -167,6 +167,7 @@ const BusinessInfo = ({
 
       <div ref={refs?.businessNameRef}>
         <InputWithTitle
+          required={true}
           error={errors?.businessName}
           title="Business Name"
           isTextarea={false}
@@ -179,6 +180,7 @@ const BusinessInfo = ({
       </div>
       <div ref={refs?.businessAddressRef}>
         <InputWithTitle
+          required={true}
           error={errors?.businessAddress}
           title="Business Address"
           isTextarea={true}
@@ -194,6 +196,7 @@ const BusinessInfo = ({
       {facilities.length > 0 && (
         <div ref={refs?.facilitiesRef}>
           <CheckBox
+            
             error={errors?.facilities}
             heading="Facility"
             options={facilities}

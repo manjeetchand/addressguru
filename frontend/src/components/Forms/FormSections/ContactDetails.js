@@ -58,6 +58,7 @@ const ContactDetails = ({ contact, setContact, error, clearError, refs }) => {
         <div className="grid grid-cols-2 gap-5">
           <div ref={refs?.contactNameRef}>
             <InputWithTitle
+              required={true}
               error={error?.contactName}
               title={"Full Name"}
               isTextarea={false}
@@ -71,6 +72,7 @@ const ContactDetails = ({ contact, setContact, error, clearError, refs }) => {
 
           <div ref={refs?.contactEmailRef}>
             <InputWithTitle
+              required={true}
               error={error?.contactEmail}
               title="Email"
               isTextarea={false}
@@ -87,6 +89,8 @@ const ContactDetails = ({ contact, setContact, error, clearError, refs }) => {
         <div className="grid grid-cols-2 gap-5">
           <div ref={refs?.contactNumberRef}>
             <InputWithTitle
+              header={"+65"}
+              required={true}
               error={error?.contactNumber}
               title="Mobile Number"
               isTextarea={false}
@@ -116,6 +120,7 @@ const ContactDetails = ({ contact, setContact, error, clearError, refs }) => {
         <div className="grid grid-cols-2 gap-5">
           <div ref={refs?.contactLandmarkRef}>
             <InputWithTitle
+              required={true}
               error={error?.contactLandmark}
               title="Locality / Landmark"
               isTextarea={true}

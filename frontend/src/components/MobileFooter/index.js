@@ -156,7 +156,7 @@ const MobileFooter = () => {
 
   return (
     <>
-      <section className="w-full z-30 bg-white h-20 md:hidden fixed whitespace-nowrap bottom-[-15px]">
+      <section className="w-full z-30 bg-white border-t-2 border-gray-200 h-20 md:hidden fixed whitespace-nowrap bottom-[-15px]">
         <div className="flex items-center justify-around pt-3">
           {mobileFooterData.map((item, index) => {
             const isActive = router.pathname === item?.link;

@@ -168,6 +168,8 @@ const ImageUploadSections = ({
           <h3 className="text-xl font-semibold uppercase text-gray-800">
             Upload Logo
           </h3>
+          <span className="text-red-600">&#42;</span>
+
           {(error?.logo || uploadError.logo) && (
             <div className="flex-1">
               <p className="text-red-600 text-sm font-medium">
@@ -248,6 +250,8 @@ const ImageUploadSections = ({
           <h3 className="text-xl font-semibold uppercase text-gray-800">
             Upload Images
           </h3>
+          <span className="text-red-600">&#42;</span>
+
           {(error?.images || uploadError.images) && (
             <div className="flex-1">
               <p className="text-red-600 text-sm font-medium">

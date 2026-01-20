@@ -26,11 +26,11 @@ export default function RightBusinessCard({ name }) {
 
   return (
     <div className="w-70 2xl:w-xs bg-[#FFF8F3] px-3  py-4 rounded-xl shadow-lg ">
-      <h2 className="text-sm font-bold text-gray-800 mb-1">
+      <h2 className="text-md font-bold text-gray-800 mb-1">
         Explore the Top{" "}
         <span className="text-[#FF6E04] capitalize">{name}</span>
       </h2>
-      <p className="text-[11px] font-[500] tracking-tight mb-4">
+      <p className="text-[13px] font-[500] tracking-tight mb-4">
         You will receive the best listings details instantly, at no cost
       </p>
 
@@ -49,7 +49,7 @@ export default function RightBusinessCard({ name }) {
       />
       <button
         onClick={sendListing}
-        className="w-full bg-[#FF6E04] cursor-pointer text-sm text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition"
+        className="w-full bg-[#FF6E04] cursor-pointer text-[13px] text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition"
       >
         UNLOCK TOP DEALS
       </button>

@@ -12,27 +12,29 @@ const InputWithTitle = ({
   header,
   width,
   error,
+  required,
 }) => {
   return (
     <div className="flex flex-col w-full whitespace-nowrap gap-1">
       <label className="text-[#696969] 2xl:text-lg flex relative capitalize font-semibold">
         <span className="flex items-center gap-2">
           <p>{title}</p>
-          <span className="text-red-600">&#42;</span>
+          {header ? (
+            <span className=" text-[13px] font-semibold">({header})</span>
+          ) : (
+            (minLength || maxLength) && (
+              <span className="ml-2 text-[13px] font-light">
+                ({minLength && `Min: ${minLength} chars`}
+                {minLength && maxLength && " | "}
+                {maxLength && `Max: ${maxLength} chars`})
+              </span>
+            )
+          )}
+          {
+            required && <span className="text-red-600">&#42;</span>
+          }
           {error && <p className="text-red-500 text-sm font-normal">{error}</p>}
         </span>
-
-        {header ? (
-          <span className="ml-2 text-[13px] font-semibold">({header})</span>
-        ) : (
-          (minLength || maxLength) && (
-            <span className="ml-2 text-[13px] font-light">
-              ({minLength && `Min: ${minLength} chars`}
-              {minLength && maxLength && " | "}
-              {maxLength && `Max: ${maxLength} chars`})
-            </span>
-          )
-        )}
       </label>
 
       {isTextarea ? (

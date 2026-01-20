@@ -36,7 +36,7 @@ const Loader = () => {
       {/* Logo */}
       <div ref={logoRef}>
         <Image
-          src="/assets/logopng 1.png"
+          src="/assets/addressguru_logo.png"
           height={180}
           width={180}
           alt="logo"

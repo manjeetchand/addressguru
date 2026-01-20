@@ -135,7 +135,7 @@ const RateUs = ({ onClose, id, type, setType, setThanksPop }) => {
   };
 
   return (
-    <div className="max-w-md min-w-sm w-full bg-white rounded-xl shadow-lg p-4 relative">
+    <div className="max-w-140 min-w-sm  w-full bg-white rounded-xl shadow-lg p-6 relative">
       <button
         onClick={handleClose}
         className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
@@ -143,7 +143,7 @@ const RateUs = ({ onClose, id, type, setType, setThanksPop }) => {
         <X className="w-5 h-5" />
       </button>
 
-      <h2 className="text-xl font-bold text-gray-800 mb-1 text-center">
+      <h2 className="text-xl font-bold text-orange-600 mb-1 text-center">
         Rate Us
       </h2>
       <p className="text-sm text-gray-500 mb-3 text-center">
@@ -240,7 +240,7 @@ const RateUs = ({ onClose, id, type, setType, setThanksPop }) => {
           className={`w-full py-2.5 rounded-lg font-semibold transition-colors shadow-md ${
             isSubmitting
               ? "bg-gray-400 cursor-not-allowed text-white"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
+              : "bg-orange-600 hover:bg-orange-700 text-white"
           }`}
         >
           {isSubmitting ? "Submitting..." : "Rate Us"}

@@ -27,7 +27,7 @@ const Foot1 = () => {
         <Link href="/">
           <div className="mb-4 border w-50 p-2 border-dashed rounded-xl border-[#FF6E04] cursor-pointer">
             <Image
-              src="/assets/logopng 1.png"
+              src="/assets/addressguru_logo.png"
               alt="Address Guru Logo"
               width={500}
               height={500}
